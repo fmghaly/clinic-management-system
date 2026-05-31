@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title or "Clinic Management System" }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <aside class="sidebar">
+        <a class="brand" href="{{ url_for('index') }}">Clinic DB</a>
+        <nav>
+            <a href="{{ url_for('departments') }}">Departments</a>
+            <a href="{{ url_for('clinics') }}">Clinics</a>
+            <a href="{{ url_for('doctors') }}">Doctors</a>
+            <a href="{{ url_for('patients') }}">Patients</a>
+            <a href="{{ url_for('appointments') }}">Appointments</a>
+            <a href="{{ url_for('add_patient') }}">Add Patient</a>
+            <a href="{{ url_for('add_appointment') }}">Add Appointment</a>
+            <a href="{{ url_for('search') }}">Search</a>
+            <a href="{{ url_for('payments') }}">Payments</a>
+        </nav>
+    </aside>
+    <main class="content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="messages">
+                    {% for category, message in messages %}
+                        <div class="message {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

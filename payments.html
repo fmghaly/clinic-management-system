@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-header">
+    <h1>Patient Payment Summary</h1>
+</section>
+
+<form class="search-bar" method="post">
+    <select name="patient_id" required>
+        {% for patient in patients %}
+            <option value="{{ patient.patient_id }}">{{ patient.patient_name }} ({{ patient.patient_id }})</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Show Total</button>
+</form>
+
+{% if summary %}
+<section class="payment-summary">
+    <p><strong>Patient:</strong> {{ summary.patient_name }} ({{ summary.patient_id }})</p>
+    <p><strong>Appointments:</strong> {{ summary.appointment_count }}</p>
+    <p><strong>Total Paid:</strong> {{ "%.2f"|format(summary.total_paid) }}</p>
+</section>
+{% endif %}
+{% endblock %}

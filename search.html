@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-header">
+    <h1>Search Appointments</h1>
+</section>
+
+<form class="search-bar" method="get">
+    <input type="text" name="patient_name" placeholder="Patient name" value="{{ patient_name }}">
+    <input type="text" name="doctor_name" placeholder="Doctor name" value="{{ doctor_name }}">
+    <button type="submit">Search</button>
+</form>
+
+{% set title = "Search Results" %}
+{% include "table_body.html" %}
+{% endblock %}

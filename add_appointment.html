@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-header">
+    <h1>Add Appointment</h1>
+</section>
+
+<form class="form-card" method="post">
+    <label>Appointment ID <input type="number" name="appointment_id" required></label>
+    <label>Date <input type="date" name="appointment_date" required></label>
+    <label>Patient
+        <select name="patient_id" required>
+            {% for patient in patients %}
+                <option value="{{ patient.patient_id }}">{{ patient.patient_name }} ({{ patient.patient_id }})</option>
+            {% endfor %}
+        </select>
+    </label>
+    <label>Doctor
+        <select name="doctor_id" required>
+            {% for doctor in doctors %}
+                <option value="{{ doctor.doctor_id }}">{{ doctor.doctor_name }} ({{ doctor.doctor_id }})</option>
+            {% endfor %}
+        </select>
+    </label>
+    <label>Start Time <input type="time" name="start_time" required></label>
+    <label>End Time <input type="time" name="end_time" required></label>
+    <label>Cost <input type="number" name="cost" min="0" step="0.01" required></label>
+    <label>Status
+        <select name="status" required>
+            {% for status in statuses %}
+                <option value="{{ status }}">{{ status|title }}</option>
+            {% endfor %}
+        </select>
+    </label>
+    <label>Diagnosis <input type="text" name="diagnosis"></label>
+    <button type="submit">Add Appointment</button>
+</form>
+{% endblock %}
